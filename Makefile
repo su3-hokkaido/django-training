@@ -1,4 +1,4 @@
-.PHONY: brew_install brew_v brew_update brew_upgrade py_install py_v pip_v init_venv activate_venv initprj initapp runserver
+.PHONY: brew_install brew_v brew_update brew_upgrade py_install py_v pip_v init_venv activate_venv initprj initapp runserver makesu makemigration migrate connectdb
 
 ## 0: Variables
 
@@ -43,3 +43,17 @@ initapp: ## Create an app
 
 runserver: ## Run a local server
 	cd ./djangotrainingproject && python3 manage.py runserver
+
+## 4: DB migration
+
+makesu: ## Create the super user for Django Admin Page
+	cd ./djangotrainingproject && python3 manage.py createsuperuser
+
+makemigration: ## Create migration files
+	cd ./djangotrainingproject && python3 manage.py makemigrations
+
+migrate: ## Run migration
+	cd ./djangotrainingproject && python3 manage.py migrate
+
+connectdb:
+	cd ./djangotrainingproject && sqlite3 db.sqlite3
