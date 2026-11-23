@@ -1,6 +1,6 @@
-from django.http import HttpRequest, HttpResponse
-# from django.shortcuts import render
+from django.views.generic.list import ListView
+from djangotrainingapp.models import Task
 
 # Create your views here.
-def task_list(request: HttpRequest) -> HttpResponse:
-  return HttpResponse('<h1>Hello, Django!!!</h1>')
+class TaskList(ListView):
+  model = Task

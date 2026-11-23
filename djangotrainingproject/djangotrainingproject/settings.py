@@ -55,7 +55,7 @@ ROOT_URLCONF = 'djangotrainingproject.urls'
 TEMPLATES: list[dict[str, Any]] = [# Added ': list[dict[str, Any]]' by @su3-hokkaido on Nov 22nd 2026
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
