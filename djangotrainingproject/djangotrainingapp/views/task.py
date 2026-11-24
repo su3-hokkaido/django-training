@@ -7,13 +7,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..forms import TaskForm
 from ..models import Task
+from .mixins import OwnerQuerysetMixin
 
-class TaskList(LoginRequiredMixin, ListView):
+class TaskList(LoginRequiredMixin, OwnerQuerysetMixin, ListView):
   model = Task
   template_name = 'djangotrainingapp/task/task_list.html'
   context_object_name = 'tasks'
 
-class TaskDetail(LoginRequiredMixin, DetailView):
+class TaskDetail(LoginRequiredMixin, OwnerQuerysetMixin, DetailView):
   model = Task
   template_name = 'djangotrainingapp/task/task_detail.html'
   context_object_name = 'task'
@@ -25,18 +26,18 @@ class TaskCreate(LoginRequiredMixin, CreateView):
   form_class = TaskForm
   success_url = reverse_lazy('tasks')
 
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+  def form_valid(self, form): # type: ignore
+    form.instance.user = self.request.user # type: ignore
+    return super().form_valid(form) # type: ignore
 
-class TaskUpdate(LoginRequiredMixin, UpdateView):
+class TaskUpdate(LoginRequiredMixin, OwnerQuerysetMixin, UpdateView):
   model = Task
   template_name = 'djangotrainingapp/task/task_form.html'
   context_object_name = 'task_update'
   form_class = TaskForm
   success_url = reverse_lazy('tasks')
 
-class TaskDelete(LoginRequiredMixin, DeleteView):
+class TaskDelete(LoginRequiredMixin, OwnerQuerysetMixin, DeleteView):
   model = Task
   template_name = 'djangotrainingapp/task/task_confirm_delete.html'
   context_object_name = 'task'

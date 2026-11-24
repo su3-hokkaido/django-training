@@ -62,3 +62,24 @@ class TaskFormTest(TestCase):
     self.client.post(reverse('task-update', args=[task.pk]), {'title': 'changed'})
     task.refresh_from_db()
     self.assertEqual((task.title, task.user), ('changed', self.user))
+
+class OwnerScopeTest(TestCase):
+  def setUp(self):
+    self.user = User.objects.create_user('tester', password='pass')
+    self.other = User.objects.create_user('other', password='pass')
+    self.mine = Task.objects.create(user=self.user, title='mine')
+    self.theirs = Task.objects.create(user=self.other, title='theirs')
+    self.client.login(username='tester', password='pass')
+
+  def test_list_shows_only_own_tasks(self):
+    response = self.client.get(reverse('tasks'))
+    self.assertEqual(list(response.context['tasks']), [self.mine])
+
+  def test_others_task_returns_404(self):
+    for name in ('task', 'task-update', 'task-delete'):
+      response = self.client.get(reverse(name, args=[self.theirs.pk]))
+      self.assertEqual(response.status_code, 404, name)
+
+  def test_cannot_delete_others_task(self):
+    self.client.post(reverse('task-delete', args=[self.theirs.pk]))
+    self.assertTrue(Task.objects.filter(pk=self.theirs.pk).exists())
