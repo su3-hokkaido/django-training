@@ -1,3 +1,7 @@
+{% if request.user.is_authenticated %}
+<p>{{request.user}}</p>
+{% endif %}
+
 <h1>ToDo List!!!</h1>
 <a href="{% url 'task-create' %}">タスク作成</a>
 
