@@ -126,3 +126,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# Redirect in case that it is not authenticated
+
+LOGIN_URL = 'login/'
