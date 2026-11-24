@@ -1,0 +1,7 @@
+<h1>ToDo Task Deletion Confirmation!!!</h1>
+<a href="{% url 'tasks' %}">タスク一覧へ戻る</a>
+
+<form method="post">{% csrf_token %}
+  <p>Is it ready to delete "{{task}} ({{task.description}})"?</p>
+  <input type="submit" value="Delete">
+</form>
