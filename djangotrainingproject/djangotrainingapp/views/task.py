@@ -3,43 +3,41 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Task
-from .models import User
+from ..forms import TaskForm
+from ..models import Task
 
-# Create your views here.
 class TaskList(LoginRequiredMixin, ListView):
   model = Task
+  template_name = 'djangotrainingapp/task/task_list.html'
   context_object_name = 'tasks'
 
 class TaskDetail(LoginRequiredMixin, DetailView):
   model = Task
+  template_name = 'djangotrainingapp/task/task_detail.html'
   context_object_name = 'task'
 
 class TaskCreate(LoginRequiredMixin, CreateView):
   model = Task
+  template_name = 'djangotrainingapp/task/task_form.html'
   context_object_name = 'task_create'
-  # fields = ['id', 'title', 'description']
-  fields = '__all__'
+  form_class = TaskForm
   success_url = reverse_lazy('tasks')
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
   model = Task
+  template_name = 'djangotrainingapp/task/task_form.html'
   context_object_name = 'task_update'
-  fields = '__all__'
+  form_class = TaskForm
   success_url = reverse_lazy('tasks')
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
   model = Task
+  template_name = 'djangotrainingapp/task/task_confirm_delete.html'
   context_object_name = 'task'
   success_url = reverse_lazy('tasks')
-
-class TaskListLoginView(LoginView):  # pyright: ignore[reportMissingTypeArgument]
-  model = User
-  context_object_name = 'task_list_login'
-  fields = '__all__'
-  template_name = 'djangotrainingapp/login.html' # Default: 'templates/registration/login.html'
-  def get_success_url(self):
-    return reverse_lazy('tasks')

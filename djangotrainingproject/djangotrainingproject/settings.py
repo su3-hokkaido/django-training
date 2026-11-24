@@ -129,4 +129,4 @@ MAILERS = {
 
 # Redirect in case that it is not authenticated
 
-LOGIN_URL = 'login/'
+LOGIN_URL = 'login'
