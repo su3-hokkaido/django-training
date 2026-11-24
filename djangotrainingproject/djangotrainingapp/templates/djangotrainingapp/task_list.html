@@ -9,6 +9,7 @@
   <tr>
     <td>{{task.title}}</td>
     <td><a href="{% url 'task' task.id %}">Confirm</a></td>
+    <td><a href="{% url 'task-update' task.id %}">Update</a></td>
   </tr>
   {% endfor %}
 </table>
