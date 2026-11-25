@@ -1,3 +1,5 @@
+{% extends 'djangotrainingapp/component/base.html' %}
+{% block content %}
 <h1>ToDo Login</h1>
 
 <form action="" method="post">
@@ -8,3 +10,4 @@
 
 <p>You have no account?</p>
 <a href="{% url 'register' %}">Create New User</a>
+{% endblock content %}

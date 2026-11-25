@@ -1,3 +1,5 @@
+{% extends 'djangotrainingapp/component/base.html' %}
+{% block content %}
 <h1>ToDo Task Deletion Confirmation!!!</h1>
 <a href="{% url 'tasks' %}">タスク一覧へ戻る</a>
 
@@ -5,3 +7,4 @@
   <p>Is it ready to delete "{{task}} ({{task.description}})"?</p>
   <input type="submit" value="Delete">
 </form>
+{% endblock content %}

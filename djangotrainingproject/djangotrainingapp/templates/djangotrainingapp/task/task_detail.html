@@ -1,3 +1,5 @@
+{% extends 'djangotrainingapp/component/base.html' %}
+{% block content %}
 <h1>ToDo Detail!!!</h1>
 <a href="{% url 'tasks' %}">タスク一覧へ戻る</a>
 
@@ -11,3 +13,4 @@
     </tr>
   </td>
 </table>
+{% endblock content %}

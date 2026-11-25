@@ -1,12 +1,5 @@
-{% if request.user.is_authenticated %}
-<p>{{request.user}}</p>
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">ログアウト</button>
-</form>
-{% else %}
-<a href="{% url 'login' %}">ログイン</a>
-{% endif %}
+{% extends 'djangotrainingapp/component/base.html' %}
+{% block content %}
 
 <h1>ToDo List!!!</h1>
 <a href="{% url 'task-create' %}">タスク作成</a>
@@ -32,3 +25,16 @@
   <tr><td>No task data!</td></tr>
   {% endfor %}
 </table>
+
+<div class="login-and-logout">
+  {% if request.user.is_authenticated %}
+  <p>{{request.user}}</p>
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">ログアウト</button>
+  </form>
+  {% else %}
+  <a href="{% url 'login' %}">ログイン</a>
+  {% endif %}
+</div>
+{% endblock content %}
