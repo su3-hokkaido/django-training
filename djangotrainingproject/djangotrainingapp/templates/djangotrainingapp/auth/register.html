@@ -1,0 +1,10 @@
+<h1>Create New User!!</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Create" />
+</form>
+
+<p>You already have your account?</p>
+<a href="{% url  'login' %}">Back to Login page</a>

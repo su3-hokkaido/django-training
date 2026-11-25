@@ -83,3 +83,15 @@ class OwnerScopeTest(TestCase):
   def test_cannot_delete_others_task(self):
     self.client.post(reverse('task-delete', args=[self.theirs.pk]))
     self.assertTrue(Task.objects.filter(pk=self.theirs.pk).exists())
+
+class RegisterViewTest(TestCase):
+  def test_register_page(self):
+    response = self.client.get(reverse('register'))
+    self.assertTemplateUsed(response, 'djangotrainingapp/auth/register.html')
+
+  def test_register_creates_user_and_logs_in(self):
+    response = self.client.post(reverse('register'), {
+      'username': 'newuser', 'password1': 'S3cure-pass-xyz', 'password2': 'S3cure-pass-xyz'})
+    self.assertRedirects(response, reverse('tasks'))
+    self.assertTrue(User.objects.filter(username='newuser').exists())
+    self.assertEqual(self.client.get(reverse('tasks')).status_code, 200)
