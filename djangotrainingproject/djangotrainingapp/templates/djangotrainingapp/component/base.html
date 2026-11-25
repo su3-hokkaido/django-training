@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,33 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Django ToDo Training!</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
-  <style>
-    body {
-      background-color: powderblue;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-style: normal;
-      padding-top: 55pt;
-    }
-
-    .djangotrainingAppWrapper {
-      max-width: 530px;
-      margin: 0 auto;
-      padding: 30px;
-      background-color: aliceblue;
-      box-shadow: 0px 12px 18px -7px #777777;
-      border-radius: 10px;
-    }
-
-    a {
-      color: teal;
-      text-decoration: none;
-    }
-
-    h1 {
-      margin: 0px;
-    }
-  </style>
   <body>
     <div class="djangotrainingAppWrapper">
       {% block content %}

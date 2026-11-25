@@ -28,7 +28,7 @@
 
 <div class="login-and-logout">
   {% if request.user.is_authenticated %}
-  <p>{{request.user}}</p>
+  <p>Current Login User: <b>{{request.user}}</b></p>
   <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">ログアウト</button>
