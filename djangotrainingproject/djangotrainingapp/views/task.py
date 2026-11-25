@@ -8,11 +8,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ..forms import TaskForm
 from ..models import Task
 from .mixins import OwnerQuerysetMixin
+from typing import Any
 
 class TaskList(LoginRequiredMixin, OwnerQuerysetMixin, ListView):
   model = Task
   template_name = 'djangotrainingapp/task/task_list.html'
   context_object_name = 'tasks'
+
+  def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+    context = super().get_context_data(**kwargs)
+    context['search_text'] = self.request.GET.get('search-text', '')
+    return context
 
 class TaskDetail(LoginRequiredMixin, OwnerQuerysetMixin, DetailView):
   model = Task
