@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, cast
 
 from django.db.models import QuerySet
 from django.http import HttpRequest
@@ -9,5 +9,6 @@ class OwnerQuerysetMixin:
   request: HttpRequest
 
   def get_queryset(self) -> QuerySet[Any]:
-    queryset = super().get_queryset()  # pyright: ignore[reportUnknownVariableType, reportUnknownMemberType, reportAttributeAccessIssue]
-    return queryset.filter(user=self.request.user) # type: ignore
+    queryset = cast('QuerySet[Any]', super().get_queryset())  # pyright: ignore[reportUnknownMemberType, reportAttributeAccessIssue]
+    result = queryset.filter(user=self.request.user)
+    return result

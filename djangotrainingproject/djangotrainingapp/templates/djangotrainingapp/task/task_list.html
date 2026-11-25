@@ -11,6 +11,12 @@
 <h1>ToDo List!!!</h1>
 <a href="{% url 'task-create' %}">タスク作成</a>
 
+<form method="get">
+  {% csrf_token %}
+  <input type="text" name="search-text" />
+  <input type="submit" value="Search!!!" />
+</form>
+
 <table>
   <tr>
     <th>Tasks</th>
