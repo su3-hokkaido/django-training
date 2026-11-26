@@ -1,4 +1,4 @@
-.PHONY: brew_install brew_v brew_update brew_upgrade py_install py_v pip_v init_venv activate_venv initprj initapp runserver makesu makemigration migrate connectdb
+.PHONY: brew_install brew_v brew_update brew_upgrade py_install py_v pip_v init_venv activate_venv initprj initapp runserver makesu makemigration migrate connectdb runfrontend
 
 ## 0: Variables
 
@@ -43,6 +43,9 @@ initapp: ## Create an app
 
 runserver: ## Run a local server
 	cd ./djangotrainingproject && python3 manage.py runserver
+
+runfrontend: ## Run a local Next.js server
+	cd ./frontend && npm run dev
 
 ## 4: DB migration
 
