@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'djangotrainingapp', # Added by @su3-hokkaido on Nov 22nd 2026
 ]
 
@@ -128,6 +129,12 @@ MAILERS = {
     },
 }
 
-# Redirect in case that it is not authenticated
+# REST API (Django REST framework)
 
-LOGIN_URL = 'login'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.SessionAuthentication'],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+}
+
+# Next.js (開発サーバー) からの POST などを CSRF チェックで許可する
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
