@@ -1,5 +1,5 @@
 body {
-  background-color: powderblue;
+  background-color: rgb(228, 241, 242);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
   padding-top: 55pt;
@@ -7,9 +7,8 @@ body {
 
 .djangotrainingAppWrapper {
   max-width: 530px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: aliceblue;
+  margin: 0px auto;
+  background-color: rgb(184, 207, 228);
   box-shadow: 0px 12px 18px -7px #777777;
   border-radius: 10px;
 }
@@ -21,4 +20,74 @@ a {
 
 h1 {
   margin: 0px;
+  text-align: center;
+  padding: 20px 0;
+  background: #2A7B9B;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+  border-radius: 10px 10px 0px 0px;
+}
+
+.taskWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid grey;
+  align-items: center;
+}
+
+.taskCompleted{
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.taskTitle{
+  display: flex;
+}
+
+.taskEdit {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.loginAndLogout {
+  padding: 20px;
+
+}
+
+.loginAndLogout a {
+  color: lightcoral;
+}
+
+.searchWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+
+.searchInput {
+  height: 24px;
+  outline: none;
+  border: 1px solid lightseagreen;
+  border-radius: 5px;
+  padding: 2px 4px;
+  width: 160px;
+}
+
+.searchButton {
+  border: 1px solid lightseagreen;
+  padding: 4px 10px;
+  background-color: #fafafa;
+  color: lightseagreen;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.4s;
+}
+
+.searchButton:hover {
+  background-color: lightseagreen;
+  color: white;
 }

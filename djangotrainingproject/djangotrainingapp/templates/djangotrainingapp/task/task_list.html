@@ -1,34 +1,49 @@
 {% extends 'djangotrainingapp/component/base.html' %}
 {% block content %}
 
-<h1>ToDo List!!!</h1>
-<a href="{% url 'task-create' %}">タスク作成</a>
+<div class="header">
+  <h1>{{request.user}} のタスク</h1>
+</div>
 
-<form method="get">
-  {% csrf_token %}
-  <input type="text" name="search-text" value="{{ search_text }}" />
-  <input type="submit" value="Search!!!" />
-</form>
+<div class="searchWrapper">
+  <form method="get">
+    {% csrf_token %}
+    <input class="searchInput" type="text" name="search-text" value="{{ search_text }}" />
+    <input class="searchButton" type="submit" value="Search!!!" />
+  </form>
 
-<table>
-  <tr>
-    <th>Tasks</th>
-  </tr>
+  <a href="{% url 'task-create' %}" class="addTaskButton">タスク作成</a>
+</div>
+
+<div class="taskListWrapper">
   {% for task in tasks %}
-  <tr>
-    <td>{{task.title}}</td>
-    <td><a href="{% url 'task' task.id %}">Confirm</a></td>
-    <td><a href="{% url 'task-update' task.id %}">Update</a></td>
-    <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-  </tr>
+  <div class="taskWrapper">
+    <div class="taskTitle">
+      <div class="taskCompleted">
+        {% if task.completed %}
+        ✅
+        {% else %}
+        ☑️
+        {% endif %}
+      </div>
+      {% if task.completed %}
+      <s><a href="{% url 'task' task.id %}">{{task}}</a></s>
+      {% else %}
+      <a href="{% url 'task' task.id %}">{{task}}</a>
+      {% endif %}
+    </div>
+    <div class="taskEdit">
+      <a href="{% url 'task-update' task.id %}" class="updateButton">✏️ Edit</a>
+      <a href="{% url 'task-delete' task.id %}" class="deleteButton">❌ Delete</a>
+    </div>
+  </div>
   {% empty %}
-  <tr><td>No task data!</td></tr>
+  <div>No task data!</div>
   {% endfor %}
-</table>
+</div>
 
-<div class="login-and-logout">
+<div class="loginAndLogout">
   {% if request.user.is_authenticated %}
-  <p>Current Login User: <b>{{request.user}}</b></p>
   <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">ログアウト</button>
