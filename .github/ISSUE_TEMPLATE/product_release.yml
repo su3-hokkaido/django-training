@@ -1,0 +1,149 @@
+name: プロダクトリリース手順
+description: プロダクトリリース活動の追跡と調整を行う
+title: "[リリース] "
+labels: ["release", "procedure"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **🚀 プロダクトリリースの調整**
+        このテンプレートを使用して、プロダクトリリースのすべての活動と要件を追跡してください。
+
+  - type: input
+    id: version
+    attributes:
+      label: リリースバージョン
+      description: どのバージョンをリリースしますか？
+      placeholder: "v1.2.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: release-type
+    attributes:
+      label: リリースタイプ
+      description: これはどのタイプのリリースですか？
+      options:
+        - Major release
+        - Minor release
+        - Patch release
+        - Hotfix
+        - Beta release
+        - Release candidate
+    validations:
+      required: true
+
+  - type: input
+    id: target-date
+    attributes:
+      label: リリース予定日
+      description: いつこのバージョンをリリースする予定ですか？
+      placeholder: "2024-03-15"
+    validations:
+      required: true
+
+  - type: textarea
+    id: release-summary
+    attributes:
+      label: リリース概要
+      description: このリリースに含まれる内容の簡潔な概要
+      placeholder: "主要な機能、重大なバグ修正、破壊的変更など"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: pre-release-checklist
+    attributes:
+      label: リリース前チェックリスト
+      description: リリース前にこれらのタスクを完了してください
+      options:
+        - label: すべての機能と修正がmainブランチにマージされた
+        - label: 関連するすべてのファイルでバージョン番号が更新された
+        - label: CHANGELOGが更新された
+        - label: ドキュメントが更新された
+        - label: すべてのテストが成功している
+        - label: コードレビュープロセスが完了した
+        - label: セキュリティスキャンが完了した（該当する場合）
+        - label: パフォーマンステストが完了した（該当する場合）
+        - label: データベースマイグレーションがテストされた（該当する場合）
+        - label: デプロイメントスクリプト/設定が更新された
+
+  - type: checkboxes
+    id: testing-checklist
+    attributes:
+      label: テストチェックリスト
+      description: テストカバレッジを検証する
+      options:
+        - label: ユニットテストが成功している
+        - label: 結合テストが成功している
+        - label: エンドツーエンドテストが成功している
+        - label: 手動テストが完了した
+        - label: リグレッションテストが完了した
+        - label: ユーザー受入テスト（UAT）が完了した
+        - label: 負荷/パフォーマンステスト（必要な場合）
+        - label: セキュリティテスト（必要な場合）
+
+  - type: checkboxes
+    id: deployment-checklist
+    attributes:
+      label: デプロイメントチェックリスト
+      description: デプロイメントの準備と実行
+      options:
+        - label: デプロイメント計画が文書化された
+        - label: ロールバック計画が準備された
+        - label: デプロイメントスクリプトがテストされた
+        - label: データベースのバックアップが完了した（該当する場合）
+        - label: メンテナンス時間が予定された（必要な場合）
+        - label: ステークホルダーにデプロイメント時間が通知された
+        - label: モニタリングとアラートが設定された
+        - label: ヘルスチェックが準備された
+
+  - type: checkboxes
+    id: post-release-checklist
+    attributes:
+      label: リリース後チェックリスト
+      description: リリース後に完了すべき活動
+      options:
+        - label: リリースが正常にデプロイされた
+        - label: ヘルスチェックが検証された
+        - label: モニタリングでシステムの安定性が確認された
+        - label: リリースノートが公開された
+        - label: ステークホルダーに成功したリリースが通知された
+        - label: バージョンコントロールでリリースがタグ付けされた
+        - label: リリース成果物がアーカイブされた
+        - label: リリース後レビューが予定された
+
+  - type: textarea
+    id: known-issues
+    attributes:
+      label: 既知の問題
+      description: このリリースにおける既知の問題や制限事項
+      placeholder: "既知のバグ、制限事項、注意が必要な領域をリストアップしてください"
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 依存関係と前提条件
+      description: このリリースの依存関係や前提条件
+      placeholder: "外部依存、インフラの変更、サードパーティサービスなど"
+
+  - type: textarea
+    id: communication-plan
+    attributes:
+      label: コミュニケーション計画
+      description: このリリースはどのようにコミュニケーションされますか？
+      placeholder: "ユーザーへの発表、チーム通知、ドキュメント更新など"
+
+  - type: textarea
+    id: rollback-plan
+    attributes:
+      label: ロールバック計画
+      description: 問題が発生した場合のロールバック計画
+      placeholder: "ロールバックの手順、時間要件、データの考慮事項など"
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: 追加メモ
+      description: その他の関連情報
+      placeholder: "特別な考慮事項、学んだ教訓、フォローアップタスクなど"

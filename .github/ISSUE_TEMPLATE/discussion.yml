@@ -1,0 +1,68 @@
+name: ディスカッション
+description: アイデア、質問、一般的なトピックについて議論を開始する
+title: "[ディスカッション] "
+labels: ["discussion", "question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ディスカッションの開始をありがとうございます！ここはオープンエンドな質問、ブレインストーミング、プロジェクトに関する一般的な会話のための場所です。
+
+  - type: textarea
+    id: topic
+    attributes:
+      label: ディスカッショントピック
+      description: 何について議論したいですか？
+      placeholder: 議論したいトピックや質問を簡潔に説明してください
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: カテゴリ
+      description: このディスカッションはどのカテゴリに当てはまりますか？
+      options:
+        - 一般的な質問
+        - 機能のブレインストーミング
+        - アーキテクチャ/設計
+        - ベストプラクティス
+        - プロセス/ワークフロー
+        - ドキュメント
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 文脈と背景
+      description: 関連する文脈や背景情報を提供してください
+      placeholder: このディスカッションに至った経緯は？関連する背景はありますか？
+
+  - type: textarea
+    id: current-thoughts
+    attributes:
+      label: 現在の考え/アイデア
+      description: 初期の考えやアイデアをシェアしてください
+      placeholder: このトピックについての初期の考えは何ですか？
+
+  - type: textarea
+    id: specific-questions
+    attributes:
+      label: 具体的な質問
+      description: 答えてもらいたい具体的な質問がありますか？
+      placeholder: このトピックについての具体的な質問をリストアップしてください
+
+  - type: checkboxes
+    id: discussion-goals
+    attributes:
+      label: ディスカッションの目標
+      description: このディスカッションで何を達成したいですか？
+      options:
+        - label: アイデアに対するフィードバックを得る
+        - label: さまざまな観点を集める
+        - label: 意思決定を行う
+        - label: トピックについてより多く学ぶ
+        - label: 知識/経験をシェアする
+        - label: 潜在的な問題や考慮事項を特定する

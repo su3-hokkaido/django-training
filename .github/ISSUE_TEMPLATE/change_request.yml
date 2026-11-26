@@ -1,0 +1,63 @@
+name: 変更依頼
+description: 既存機能の変更や修正を依頼する
+title: "[変更] "
+labels: ["change-request", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        変更依頼をありがとうございます！ご依頼内容を理解するために、できるだけ詳細な情報をご提供ください。
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: 現在の動作
+      description: 変更したい現在の動作について説明してください
+      placeholder: 現在どのような動作をしていて、何を変更したいですか？
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-behavior
+    attributes:
+      label: 希望する動作
+      description: 代わりにどのような動作を希望するか説明してください
+      placeholder: どのような動作になることを望んでいますか？
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: 変更理由
+      description: なぜこの変更が必要なのか説明してください
+      placeholder: なぜこの変更が重要なのですか？どのような問題を解決しますか？
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先度
+      description: この変更はどの程度緊急ですか？
+      options:
+        - Urgent
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact-assessment
+    attributes:
+      label: 影響度評価
+      description: この変更の潜在的な影響について説明してください
+      placeholder: 誰/何がこの変更の影響を受けますか？リスクや考慮事項はありますか？
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 追加情報
+      description: 他に役立つ情報があれば記載してください
+      placeholder: スクリーンショット、例、関連するissueなど
